@@ -436,7 +436,7 @@ function pokemonLabel(item) {
         var iv = getIv(atk, def, sta)
         details =
             '<div>' +
-            'IV: ' + iv.toFixed(1) + '% (' + atk + '/' + def + '/' + sta + ')' +
+            '<b><font size="4"> IV: ' + iv.toFixed(1) + '%</font></b>(' + atk + '/' + def + '/' + sta + ')' +
             '</div>'
 
         if (cp != null && (cpMultiplier != null || level != null)) {
@@ -448,62 +448,53 @@ function pokemonLabel(item) {
             }
             details +=
                 '<div>' +
-                i8ln('CP') + ' : ' + cp + ' | ' + i8ln('Level') + ' : ' + pokemonLevel +
+                '<b> WP: ' + cp + ' | Level: ' + pokemonLevel + '</b>' +
                 '</div>'
         }
 
         details +=
             '<div>' +
-            i8ln('Moves') + ' : ' + pMove1 + ' / ' + pMove2 +
+            'Moves: ' + pMove1 + ' / ' + pMove2 +
             '</div>'
     }
     if (weatherBoostedCondition !== 0) {
         details +=
             '<div>' +
-            'Boosted by: ' + weather[weatherBoostedCondition] +
+            'Wetterboost: ' + weather[weatherBoostedCondition] +
             '</div>'
     }
-    if (gender != null) {
-        details +=
-            '<div>' +
-            i8ln('Gender') + ': ' + genderType[gender - 1]
-        if (weight != null) {
-            details += ' | ' + i8ln('Weight') + ': ' + weight.toFixed(2) + 'kg'
-        }
-        if (height != null) {
-            details += ' | ' + i8ln('Height') + ': ' + height.toFixed(2) + 'm'
-        }
-        details +=
-            '</div>'
+    if (weight != null && height != null) {
+        details += '<div> | Weight: ' + weight.toFixed(2) + 'kg | Height: ' + height.toFixed(2) + 'm' + '</div>'
     }
     var contentstring =
         '<div>' +
-        '<b>' + name + '</b>'
+        '<b><font size="4">' + name + '</font></b>'
     if (id === 201 && form !== null && form > 0) {
         contentstring += ' (' + unownForm[item['form']] + ')'
     }
     contentstring += '<span> - </span>' +
         '<small>' +
-        '<a href="https://pokemon.gameinfo.io/' + language + '/pokemon/' + id + '" target="_blank" title="' + i8ln('View in Pokedex') + '">#' + id + '</a>' +
+        '<a href="https://pokemon.gameinfo.io/en/pokemon/' + id + '" target="_blank" title="View in Pokedex">#' + id + '</a>' +
         '</small>' +
-        '<span> ' + rarityDisplay + '</span>' +
+        '<span><font size="4"> ' + genderType[gender - 1] + '</font></span>' +
         '<span> - </span>' +
         '<small>' + typesDisplay + '</small>' +
         '</div>' +
-        '<div>' +
-        i8ln('Disappears at') + ' ' + getTimeStr(disappearTime) +
-        ' <span class="label-countdown" disappears-at="' + disappearTime + '">(00m00s)</span>' +
-        '</div>' +
-        '<div>' +
-        i8ln('Location') + ': <a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ', ' + longitude + ')" title="' + i8ln('View in Maps') + '">' + latitude.toFixed(6) + ', ' + longitude.toFixed(7) + '</a>' +
+        '<div style="font-weight: bold">' +
+		'<a href="javascript:void(0)" onclick="javascript:openMapDirections(' + latitude + ', ' + longitude + ')" title="View in Maps">Route </a>' +
+        //'Disappears at ' + getTimeStr(disappearTime) +
+        '<br> <span class="label-countdown" style="background-color: #fffaaa" disappears-at="' + disappearTime + '">(00m00s)</span>' + ' verbleibend<br>' +
+        '<font size="1">(Despawn um ' + getTimeStr(disappearTime) + ')</font><br><br>' +
         '</div>' +
         details +
-        '<div>' +
-        '<a href="javascript:excludePokemon(' + id + ')">' + i8ln('Exclude') + '</a>&nbsp&nbsp' +
-        '<a href="javascript:notifyAboutPokemon(' + id + ')">' + i8ln('Notify') + '</a>&nbsp&nbsp' +
-        '<a href="javascript:removePokemonMarker(\'' + encounterId + '\')">' + i8ln('Remove') + '</a>&nbsp&nbsp' +
-        '<a href="javascript:void(0);" onclick="javascript:toggleOtherPokemon(' + id + ');" title="' + i8ln('Toggle display of other Pokemon') + '">' + i8ln('Toggle Others') + '</a>' +
-        '</div>'
+        '<br><div>' +
+		'<span style="font-weight: bold">Optionen für ' + name + ':</span><br>' +
+        '<a href="javascript:excludePokemon(' + id + ')">Alle '+ name + ' ausblenden</a><br>' +
+        '<a href="javascript:notifyAboutPokemon(' + id + ')">Zu Favoriten hinzufügen</a><br>' +
+		'<br>' +
+        '<a href="javascript:removePokemonMarker(\'' + encounterId + '\')">Entfernen (dieses '+ name + ')</a><br>' +
+        '<a href="javascript:void(0);" onclick="javascript:toggleOtherPokemon(' + id + ');" title="Andere Arten aus/einblenden">Andere Arten aus/einblenden</a><br>' +
+		'</div>'
     return contentstring
 }
 
