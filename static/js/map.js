@@ -10,6 +10,7 @@ var $textLevelNotify
 var $raidNotify
 var $selectStyle
 var $selectIconSize
+var $selectIconNotifySizeModifier
 var $switchOpenGymsOnly
 var $selectTeamGymsOnly
 var $selectLastUpdateGymsOnly
@@ -346,6 +347,7 @@ function initSidebar() {
     }
 
     $('#pokemon-icon-size').val(Store.get('iconSizeModifier'))
+	$('#pokemon-icon-notify-size').val(Store.get('iconNotifySizeModifier'))
 
     var port = ''
     if (window.location.port.length > 0) {
@@ -2344,6 +2346,19 @@ $(function () {
         redrawPokemon(mapData.pokemons)
         redrawPokemon(mapData.lurePokemons)
     })
+
+	$selectIconNotifySizeModifier = $('#pokemon-icon-notify-size')
+
+	$selectIconNotifySizeModifier.select2({
+		placeholder: 'Increase Size Of Notified',
+		minimumResultsForSearch: Infinity
+	})
+
+	$selectIconNotifySizeModifier.on('change', function () {
+		Store.set('iconNotifySizeModifier', this.value)
+		redrawPokemon(mapData.pokemons)
+		redrawPokemon(mapData.lurePokemons)
+	})
 
     $switchOpenGymsOnly = $('#open-gyms-only-switch')
 

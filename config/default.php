@@ -82,8 +82,8 @@ $noPokemon = false;                                                 // true/fals
 $enablePokemon = 'true';                                            // true/false
 $noHighLevelData = false;                                           // true/false
 $noHidePokemon = false;                                             // true/false
-$hidePokemon = '[10, 13, 16, 19, 21, 29, 32, 41, 46, 48, 50, 52, 56, 74, 77, 96, 111, 133,
-                  161, 163, 167, 177, 183, 191, 194, 168]';         // [] for empty
+$hidePokemon = '[10, 13, 14, 16, 17, 19, 21, 29, 32, 35, 39, 41, 43, 46, 48, 50, 52, 56, 69, 74, 77, 86, 90, 92, 96, 98, 109, 111, 122, 124, 116, 133,
+                  161, 163, 165, 167, 177, 183, 187, 188, 190, 191, 194, 168, 198, 215, 220, 261, 263, 265, 296, 300, 309, 312, 315, 316, 325, 353, 361, 363]';         // [] for empty
 
 $noGyms = false;                                                    // true/false
 $enableGyms = 'false';                                              // true/false
@@ -158,6 +158,9 @@ $mapStyle = 'style_pgo_dynamic';                                    // roadmap, 
 
 $noIconSize = false;                                                // true/false
 $iconSize = 0;                                                      // -8, 0, 10, 20
+
+$noIconNotifySizeModifier = false;                                  // true/false | Increase size of notified Pokemon
+$iconNotifySizeModifier = 45;                                       // 0, 15, 30, 45
 
 $noGymStyle = false;                                                // true/false
 $gymStyle = 'ingame';                                               // ingame, shield

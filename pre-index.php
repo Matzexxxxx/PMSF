@@ -98,9 +98,11 @@ if ($blockIframe) {
 <div class="wrapper">
     <!-- Header -->
     <header id="header">
-        <a href="#nav"><span class="label"><?php echo i8ln('Options') ?></span></a>
+        <a href="#nav"><b><span class="label" style="color:white"><?php echo i8ln('Menü') ?></span></b></a>
 
-        <h1><a href="#"><?= $title ?></a></h1>
+         <!--
+		 <h1><a href="#"> <?= $title ?></a></h1>
+		 -->
         <?php
         if ($discordUrl != "") {
             echo '<a href="' . $discordUrl . '" target="_blank" style="margin-bottom: 5px; vertical-align: middle;padding:0 5px;">
@@ -114,8 +116,9 @@ if ($blockIframe) {
         </a>';
         }
         ?>
-        <a href="#stats" id="statsToggle" class="statsNav" style="float: right;"><span class="label"><?php echo i8ln('Stats') ?></span></a>
-    </header>
+        <a href="#stats" id="statsToggle" class="statsNav" style="float: right;"><b><span class="label" style="color:white"><?php echo i8ln('Stats') ?></span></b></a>
+	<a href="https://www.patreon.com/rocketmapdo" style="float: right;"><b><span class="label" style="color:white"><?php echo i8ln('Support Us') ?></span></b></a>
+	</header>
     <!-- NAV -->
     <nav id="nav">
         <div id="nav-accordion">
@@ -543,7 +546,7 @@ if ($blockIframe) {
             ?>
 
             <?php
-            if (!$noMapStyle || !$noIconSize || !$noGymStyle || !$noLocationStyle) {
+            if (!$noMapStyle || !$noIconSize || !$noIconNotifySizeModifier || !$noGymStyle || !$noLocationStyle) {
                 echo '<h3><b><i class="fa fa-map-o fa-fw"></i>Map Style</b></h3>
             <div>';
             }
@@ -574,6 +577,19 @@ if ($blockIframe) {
             }
             ?>
             <?php
+			if (!$noIconNotifySizeModifier) {
+				echo '<div class="form-control switch-container">
+				<h3>'.i8ln('Increase Notified Icon Size').'</h3>
+				<select name="pokemon-icon-notify-size" id="pokemon-icon-notify-size">
+					<option value="0">'.i8ln('Disable').'</option>
+					<option value="25">'.i8ln('Large').'</option>
+					<option value="35">'.i8ln('X-Large').'</option>
+					<option value="45">'.i8ln('XX-Large').'</option>
+				</select>
+				</div>';
+			}
+			?>
+			<?php
             if (!$noGymStyle) {
                 echo '<div class="form-control switch-container">
                 <h3>Gym Marker Style</h3>
@@ -593,7 +609,7 @@ if ($blockIframe) {
             }
             ?>
             <?php
-            if (!$noMapStyle || !$noIconSize || !$noGymStyle || !$noLocationStyle) {
+            if (!$noMapStyle || !$noIconSize || !$noIconNotifySizeModifier || !$noGymStyle || !$noLocationStyle) {
                 echo '</div>';
             }
 			
@@ -780,6 +796,7 @@ if ($blockIframe) {
     var enableFollowMe = <?php echo $noFollowMe ? 'false' : $enableFollowMe ?>;
     var enableSpawnArea = <?php echo $noSpawnArea ? 'false' : $enableSpawnArea ?>;
     var iconSize = <?php echo $iconSize ?>;
+	var iconNotifySizeModifier = <?php echo $iconNotifySizeModifier ?>;
     var locationStyle = '<?php echo $locationStyle ?>';
     var gymStyle = '<?php echo $gymStyle ?>';
     var spriteFile = '<?php echo $copyrightSafe ? 'static/icons-safe-1.png' : 'static/icons-im-1.png' ?>';
