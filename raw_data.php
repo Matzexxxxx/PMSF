@@ -89,7 +89,7 @@ $debug['1_before_functions'] = microtime(true) - $timing['start'];
 global $noPokemon;
 if (!$noPokemon) {
     if ($d["lastpokemon"] == "true") {
-        $eids = !empty($_POST['eids']) ? explode(",", $_POST['eids']) : array();
+        $eids = array();//!empty($_POST['eids']) ? explode(",", $_POST['eids']) : array();
         if ($lastpokemon != 'true') {
             $d["pokemons"] = $scanner->get_active($eids, $swLat, $swLng, $neLat, $neLng);
         } else {
