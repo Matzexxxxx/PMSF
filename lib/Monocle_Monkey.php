@@ -4,7 +4,7 @@ namespace Scanner;
 
 class Monocle_Monkey extends Monocle
 {
-    public function get_active($eids, $swLat, $swLng, $neLat, $neLng, $tstamp = 0, $oSwLat = 0, $oSwLng = 0, $oNeLat = 0, $oNeLng = 0)
+    public function get_active($minIV, $minLevel, $eids, $swLat, $swLng, $neLat, $neLng, $tstamp = 0, $oSwLat = 0, $oSwLng = 0, $oNeLat = 0, $oNeLng = 0)
     {
         $conds = array();
         $params = array();
@@ -42,7 +42,16 @@ class Monocle_Monkey extends Monocle
                 $i++;
             }
             $pkmn_in = substr($pkmn_in, 0, -1);
-            $conds[] = "pokemon_id NOT IN ( $pkmn_in )";
+            $cond_str = "pokemon_id NOT IN ( $pkmn_in )";
+            if(!empty($minIV)) {
+                $cond_str = "($cond_str OR ((atk_iv+def_iv+sta_iv)*100/45 >= $minIV))";
+            }
+            if(!empty($minLevel)) {
+                $cond_str = "($cond_str OR (level >= $minLevel))";
+            }
+            error_log ( $cond_str );
+            
+            $conds[] = $cond_str;
         }
 
         return $this->query_active($select, $conds, $params);

@@ -1361,6 +1361,8 @@ function loadRawData() {
             'oNeLng': oNeLng,
             'reids': String(reincludedPokemon),
             'eids': String(excludedPokemon),
+            'minIV': notifiedMinPerfection,
+            'minLevel': notifiedMinLevel,
             'token': token
         },
         dataType: 'json',

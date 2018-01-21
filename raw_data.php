@@ -89,14 +89,16 @@ $debug['1_before_functions'] = microtime(true) - $timing['start'];
 global $noPokemon;
 if (!$noPokemon) {
     if ($d["lastpokemon"] == "true") {
-        $eids = array();//!empty($_POST['eids']) ? explode(",", $_POST['eids']) : array();
+        $minIV = $_POST['minIV'];
+        $minLevel = $_POST['minLevel'];
+        $eids = !empty($_POST['eids']) ? explode(",", $_POST['eids']) : array();
         if ($lastpokemon != 'true') {
-            $d["pokemons"] = $scanner->get_active($eids, $swLat, $swLng, $neLat, $neLng);
+            $d["pokemons"] = $scanner->get_active($minIV, $minLevel, $eids, $swLat, $swLng, $neLat, $neLng);
         } else {
             if ($newarea) {
-                $d["pokemons"] = $scanner->get_active($eids, $swLat, $swLng, $neLat, $neLng, 0, $oSwLat, $oSwLng, $oNeLat, $oNeLng);
+                $d["pokemons"] = $scanner->get_active($minIV, $minLevel, $eids, $swLat, $swLng, $neLat, $neLng, 0, $oSwLat, $oSwLng, $oNeLat, $oNeLng);
             } else {
-                $d["pokemons"] = $scanner->get_active($eids, $swLat, $swLng, $neLat, $neLng, $timestamp);
+                $d["pokemons"] = $scanner->get_active($minIV, $minLevel, $eids, $swLat, $swLng, $neLat, $neLng, $timestamp);
             }
         }
 
