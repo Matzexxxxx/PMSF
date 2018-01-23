@@ -14,7 +14,7 @@ require_once(__DIR__ . '/../utils.php');
 $libs[] = "Scanner.php";
 $libs[] = "Monocle.php";
 $libs[] = "Monocle_Asner.php";
-$libs[] = "Monocle_Monkey.php";
+$libs[] = "Monocle_Alternate.php";
 $libs[] = "RocketMap.php";
 $libs[] = "RocketMap_Sloppy.php";
 
@@ -39,6 +39,7 @@ $maxLatLng = 1;                                                     // Max latit
 $maxZoomOut = 0;                                                    // Max zoom out level (11 ~= $maxLatLng = 1, 0 to disable, lower = the further you can zoom out)
 $enableCsrf = false;                                                // Don't disable this unless you know why you need to :)
 $sessionLifetime = 43200;                                           // Session lifetime, in seconds
+$blockIframe = true;                                                // Block your map being loaded in an iframe
 
 /* Map Title + Language */
 
@@ -79,15 +80,25 @@ $motdContent = "";
 
 $noPokemon = false;                                                 // true/false
 $enablePokemon = 'true';                                            // true/false
+$noPokemonNumbers = false;                                          // true/false
 $noHighLevelData = false;                                           // true/false
 $noHidePokemon = false;                                             // true/false
 $hidePokemon = '[10, 13, 16, 19, 21, 29, 32, 41, 46, 48, 50, 52, 56, 74, 77, 96, 111, 133,
                   161, 163, 167, 177, 183, 191, 194, 168]';         // [] for empty
+$noExcludeMinIV = false;                                            // true/false
+$excludeMinIV = '[131, 143, 147, 148, 149, 248]';                   // [] for empty
+
+$noMinIV = false;                                                   // true/false
+$minIV = '0';                                                       // "0" for empty or a number
+
+$noMinLevel = false;                                                // true/false
+$minLevel = '0';                                                    // "0" for empty or a number
 
 $noGyms = false;                                                    // true/false
 $enableGyms = 'false';                                              // true/false
 $noGymSidebar = false;                                              // true/false
 $gymSidebar = 'true';                                               // true/false
+$noTrainerName = false;                                             // true/false
 
 $noRaids = false;                                                   // true/false
 $enableRaids = 'false';                                             // true/false
@@ -135,21 +146,24 @@ $notifyRarity = '[]';                                               // "Common",
 $noNotifyIv = false;                                                // true/false
 $notifyIv = '""';                                                   // "" for empty or a number
 
+$noNotifyLevel = false;                                                // true/false
+$notifyLevel = '""';                                                   // "" for empty or a number
+
 $noNotifyRaid = false;                                              // true/false
 $notifyRaid = 5;                                                    // O to disable
 
 $noNotifySound = false;                                             // true/false
 $notifySound = 'false';                                             // true/false
 
-$noCriesSound = false;                                             // true/false
-$criesSound = 'false';                                             // true/false
+$noCriesSound = false;                                              // true/false
+$criesSound = 'false';                                              // true/false
 
 /* Style Settings */
 
 $copyrightSafe = true;
 
 $noMapStyle = false;                                                // true/false
-$mapStyle = 'style_pgo_dynamic';                                    // roadmap, satellite, hybrid, nolabels_style, dark_style, style_light2, style_pgo, dark_style_nl, style_pgo_day, style_pgo_night, style_pgo_dynamic
+$mapStyle = 'style_pgo_dynamic';                                    // roadmap, satellite, hybrid, nolabels_style, dark_style, style_light2, style_pgo, dark_style_nl, style_pgo_day, style_pgo_night, style_pgo_dynamic, openstreetmap
 
 $noIconSize = false;                                                // true/false
 $iconSize = 0;                                                      // -8, 0, 10, 20
@@ -159,6 +173,21 @@ $gymStyle = 'ingame';                                               // ingame, s
 
 $noLocationStyle = false;                                           // true/false
 $locationStyle = 'none';                                            // none, google, red, red_animated, blue, blue_animated, yellow, yellow_animated, pokesition, pokeball
+
+$osmTileServer = 'tile.openstreetmap.org';                          // osm tile server (no trailing slash)
+
+$triggerGyms = '[]';                                                // Add Gyms that the OSM-Query doesn't take care of like '["gym_id", "gym_id"]'
+$onlyTriggerGyms = false;                                           // Only show EX-Gyms that are defined in $triggerGyms
+$noExGyms = false;                                                  // Do not display EX-Gyms on the map
+$noParkInfo = false;                                                // Do not display Park info on the map
+
+//-----------------------------------------------------
+// Raid API
+//-----------------------------------------------------
+
+$raidApiKey = '';                                                   // Raid API Key, '' to deny access
+$sendRaidData = false;                                              // Send Raid data, false to only send gym data
+
 
 //-----------------------------------------------------
 // DEBUGGING

@@ -1,16 +1,20 @@
 <?php
 include('config/config.php');
+
+// set content type
+header('Content-Type: application/json');
+
 // init map
-if ($map == "monocle") {
-    if ($fork == "asner") {
+if (strtolower($map) == "monocle") {
+    if (strtolower($fork) == "asner") {
         $scanner = new \Scanner\Monocle_Asner();
-    } elseif ($fork == "monkey") {
-        $scanner = new \Scanner\Monocle_Monkey();
+    } elseif (strtolower($fork) == "alternate") {
+        $scanner = new \Scanner\Monocle_Alternate();
     } else {
         $scanner = new \Scanner\Monocle();
     }
-} elseif ($map == "rm") {
-    if ($fork == "sloppy") {
+} elseif (strtolower($map) == "rm") {
+    if (strtolower($fork) == "sloppy") {
         $scanner = new \Scanner\RocketMap_Sloppy();
     } else {
         $scanner = new \Scanner\RocketMap();
