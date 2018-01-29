@@ -574,7 +574,7 @@ function gymLabel(item) {
     if (lastScanned != null) {
         lastScannedStr =
             '<div>' +
-            i8ln('Last Scanned') + ' : ' + getDateStr(lastScanned) + ' ' + getTimeStr(lastScanned) +
+            i8ln('Letzter Scan') + ' : ' + getDateStr(lastScanned) + ' ' + getTimeStr(lastScanned) +
             '</div>'
     }
 
@@ -603,7 +603,7 @@ function gymLabel(item) {
             '</div>' +
             '<div>' +
 
-            i8ln('Last Modified') + ' : ' + lastModifiedStr +
+            i8ln('Letzte Änderung') + ' : ' + lastModifiedStr +
             '</div>' +
             '<div>' +
             lastScannedStr +
@@ -621,7 +621,7 @@ function gymLabel(item) {
             '<center>' +
             '<div style="padding-bottom: 2px">' +
 
-            i8ln('Gym owned by') + ' : ' +
+            i8ln('Besetzt von') + ' : ' +
             '</div>' +
             '<div>' +
             '<b style="color:rgba(' + gymColor[teamId] + ')">' + i8ln('Team') + ' ' + i8ln(teamName) + '</b><br>' +
@@ -630,7 +630,7 @@ function gymLabel(item) {
             '</div>' +
             nameStr +
             raidStr +
-            '<div><b>' + freeSlots + ' ' + i8ln('Free Slots') + '</b></div>' +
+            '<div><b>' + i8ln('Freie Plätze:') + ' ' + freeSlots + '</b></div>' +
             '<div>' +
             park +
             '</div>' +
@@ -639,13 +639,13 @@ function gymLabel(item) {
             memberStr +
             '</div>' +
             '<div>' +
-            i8ln('Location') + ' : <a href="javascript:void(0);" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ');" title="' + i8ln('View in Maps') + '">' + latitude.toFixed(6) + ' , ' + longitude.toFixed(7) + '</a>' +
-            '</div>' +
-            '<div>' +
+            '<a href="javascript:void(0);" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ');" title="' + i8ln('View in Maps') + '">' + i8ln('Google Maps Route') + '</a>' +
+            '</div>' + '<br>' +
+            '<div style="font-size:smaller">' +
 
-            i8ln('Last Modified') + ' : ' + lastModifiedStr +
+            i8ln('Letzte Änderung:') + ' : ' + lastModifiedStr +
             '</div>' +
-            '<div>' +
+            '<div style="font-size:smaller>' +
             lastScannedStr +
             '</div>' +
             '</center>' +
@@ -2041,7 +2041,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
         if (result.last_scanned != null) {
             lastScannedStr =
                 '<div style="font-size: .7em">' +
-                i8ln('Last Scanned') + ' : ' + getDateStr(result.last_scanned) + ' ' + getTimeStr(result.last_scanned) +
+                i8ln('Letzter Scan') + ' : ' + getDateStr(result.last_scanned) + ' ' + getTimeStr(result.last_scanned) +
                 '</div>'
         }
         var pokemon = result.pokemon !== undefined ? result.pokemon : []
@@ -2050,7 +2050,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
         if (result.team_id !== 0) {
             gymLevelStr =
                 '<center class="team-' + result.team_id + '-text">' +
-                '<b class="team-' + result.team_id + '-text">' + freeSlots + ' ' + i8ln('Free Slots') + '</b>' +
+                '<b class="team-' + result.team_id + '-text">' + i8ln('Freie Plätze') + ' : ' + freeSlots + '</b>' +
                 '</center>'
         }
 
@@ -2125,7 +2125,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
             '</div>' +
             lastScannedStr +
             '<div>' +
-            '<a href=\'javascript:void(0)\' onclick=\'javascript:openMapDirections(' + result.latitude + ',' + result.longitude + ')\' title=\'' + i8ln('View in Maps') + '\'>' + i8ln('Get directions') + '</a>' +
+            '<a href=\'javascript:void(0)\' onclick=\'javascript:openMapDirections(' + result.latitude + ',' + result.longitude + ')\' title=\'' + i8ln('View in Maps') + '\'>' + i8ln('Google Maps Route') + '</a>' +
             '</div>' +
             '</center>'
 
