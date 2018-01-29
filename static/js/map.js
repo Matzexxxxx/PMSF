@@ -573,8 +573,8 @@ function gymLabel(item) {
     var lastScannedStr = ''
     if (lastScanned != null) {
         lastScannedStr =
-            '<div>' +
-            i8ln('Letzter Scan') + ' : ' + getDateStr(lastScanned) + ' ' + getTimeStr(lastScanned) +
+            '<div style="font-size: smaller">' +
+            i8ln('Zuletzt gescannt') + ' : ' + getDateStr(lastScanned) + ' ' + getTimeStr(lastScanned) +
             '</div>'
     }
 
@@ -603,7 +603,7 @@ function gymLabel(item) {
             '</div>' +
             '<div>' +
 
-            i8ln('Letzte Änderung') + ' : ' + lastModifiedStr +
+            i8ln('Zuletzt geändert') + ' : ' + lastModifiedStr +
             '</div>' +
             '<div>' +
             lastScannedStr +
@@ -641,11 +641,10 @@ function gymLabel(item) {
             '<div>' +
             '<a href="javascript:void(0);" onclick="javascript:openMapDirections(' + latitude + ',' + longitude + ');" title="' + i8ln('View in Maps') + '">' + i8ln('Google Maps Route') + '</a>' +
             '</div>' + '<br>' +
-            '<div style="font-size:smaller">' +
-
-            i8ln('Letzte Änderung:') + ' : ' + lastModifiedStr +
+            '<div style="font-size: smaller">' +
+            i8ln('Zuletzt geändert') + ' : ' + lastModifiedStr +
             '</div>' +
-            '<div style="font-size:smaller>' +
+            '<div>' +
             lastScannedStr +
             '</div>' +
             '</center>' +
@@ -2041,7 +2040,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
         if (result.last_scanned != null) {
             lastScannedStr =
                 '<div style="font-size: .7em">' +
-                i8ln('Letzter Scan') + ' : ' + getDateStr(result.last_scanned) + ' ' + getTimeStr(result.last_scanned) +
+                i8ln('Zuletzt gescannt') + ' : ' + getDateStr(result.last_scanned) + ' ' + getTimeStr(result.last_scanned) +
                 '</div>'
         }
         var pokemon = result.pokemon !== undefined ? result.pokemon : []
@@ -2121,7 +2120,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
             park +
             '</div>' +
             '<div style="font-size: .7em">' +
-            i8ln('Last Modified') + ' : ' + lastModifiedStr +
+            i8ln('Zuletzt geändert') + ' : ' + lastModifiedStr +
             '</div>' +
             lastScannedStr +
             '<div>' +
