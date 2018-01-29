@@ -579,7 +579,7 @@ if ($blockIframe) {
             <?php
 			if (!$noIconNotifySizeModifier) {
 				echo '<div class="form-control switch-container">
-				<h3>'.i8ln('Increase Notified Icon Size').'</h3>
+				<h3>'.i8ln('Favoriten Größe').'</h3>
 				<select name="pokemon-icon-notify-size" id="pokemon-icon-notify-size">
 					<option value="0">'.i8ln('Disable').'</option>
 					<option value="25">'.i8ln('Large').'</option>
@@ -592,10 +592,11 @@ if ($blockIframe) {
 			<?php
             if (!$noGymStyle) {
                 echo '<div class="form-control switch-container">
-                <h3>Gym Marker Style</h3>
+                <h3>Arenen Style</h3>
                 <select name="gym-marker-style" id="gym-marker-style">
-                    <option value="ingame">In-Game</option>
-                    <option value="shield">Shield</option>
+                    <option value="ingame">InGame</option>
+                    <option value="shield">Schild</option>
+                    <option value="classic">Klassisch</option>
                 </select>
             </div>';
             }
@@ -603,7 +604,7 @@ if ($blockIframe) {
             <?php
             if (!$noLocationStyle) {
                 echo '<div class="form-control switch-container">
-                <h3>Location Icon Marker</h3>
+                <h3>Positionsanzeige</h3>
                 <select name="locationmarker-style" id="locationmarker-style"></select>
             </div>';
             }
