@@ -2494,7 +2494,7 @@ function showGymDetails(id) { // eslint-disable-line no-unused-vars
                 '<i class="pokemon-sprite-large n' + result.guard_pokemon_id + '"></i><br>' +
                 '<b class="team-' + result.team_id + '-text">' + result.guard_pokemon_name + '</b>' +
                 '<p style="font-size: .75em margin: 5px">' +
-                '<br>Es sind keine detaillierten Informationen für diese Arene verfügbar.' +
+                '<br>Es sind keine detaillierten Informationen für diese Arena verfügbar.' +
                 '</p>' +
                 '</center>'
         }
