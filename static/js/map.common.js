@@ -929,6 +929,11 @@ var StoreOptions = {
             default: false,
             type: StoreTypes.Boolean
         },
+    'showExGymsOnly':
+        {
+            default: false,
+            type: StoreTypes.Boolean
+        },
     'showTeamGymsOnly':
         {
             default: 0,

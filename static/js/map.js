@@ -15,6 +15,7 @@ var $selectStyle
 var $selectIconSize
 var $selectIconNotifySizeModifier
 var $switchOpenGymsOnly
+var $switchExGymsOnly
 var $selectTeamGymsOnly
 var $selectLastUpdateGymsOnly
 var $switchActiveRaids
@@ -268,6 +269,8 @@ function initMap() { // eslint-disable-line no-unused-vars
 
         redrawPokemon(mapData.pokemons)
         redrawPokemon(mapData.lurePokemons)
+		//For Gyms on zoom
+		updateGymIcons()
         if (this.getZoom() > 13) {
             // hide weather markers
             $.each(weatherMarkers, function (index, marker) {
@@ -357,6 +360,7 @@ function initSidebar() {
     $('#gyms-filter-wrapper').toggle(Store.get('showGyms'))
     $('#team-gyms-only-switch').val(Store.get('showTeamGymsOnly'))
     $('#open-gyms-only-switch').prop('checked', Store.get('showOpenGymsOnly'))
+    $('#ex-gyms-only-switch').prop('checked', Store.get('showExGymsOnly'))
     $('#raids-switch').prop('checked', Store.get('showRaids'))
     $('#raids-filter-wrapper').toggle(Store.get('showRaids'))
     $('#active-raids-switch').prop('checked', Store.get('activeRaids'))
@@ -965,6 +969,30 @@ function getGymMarkerIcon(item) {
     var level = item.raid_level
     var team = item.team_id
     var teamStr = ''
+		//Max Zoom 21 = Iconsize 88
+		//Min Zoom = 11 = Iconsize 8
+		//Standard size = Zoom 16 = 48
+		var gymSize = 48;
+		var dynamicGymSize = (gymSize/6) + ((gymSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var raidSize = 55;
+		var dynamicRaidSize = (raidSize/6) + ((raidSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var raidBossSize = 50;
+		var dynamicRaidBossSize = (raidBossSize/6) + ((raidBossSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var raidBossPosRight = 20;
+		var dynamicRaidBossPosRight = (raidBossPosRight/6) + ((raidBossPosRight/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var eggSize = 30;
+		var dynamicEggSize = (eggSize/6) + ((eggSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var eggPosTop = 8;
+		var dynamicEggPosTop = (eggPosTop/6) + ((eggPosTop/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var eggPosRight = 12;
+		var dynamicEggPosRight = (eggPosRight/6) + ((eggPosRight/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var exSize = 38;
+		var dynamicExSize = (exSize/6) + ((exSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var exPos = 25;
+		var dynamicExPos = (exPos/6) + ((exPos/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var exPosBot = 1;
+		var dynamicExPosBot = (exPosBot/6) + ((exPosBot/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		
     if (team === 0 || level === null) {
         teamStr = gymTypes[item['team_id']]
     } else {
@@ -972,15 +1000,16 @@ function getGymMarkerIcon(item) {
     }
     var exIcon = ''
     if ((((park !== 'None' && park !== undefined && onlyTriggerGyms === false && park) || (item['sponsor'] !== undefined && item['sponsor'] > 0) || triggerGyms.includes(item['gym_id'])) && (noExGyms === false))) {
-		if(map.getZoom() >= 13){
-			exIcon = '<img src="static/images/ex.png" style="position:absolute;right:25px;bottom:2px;"/>'
-			}
-		
+			//Drawing EX on Gym
+			exIcon = '<img src="static/images/ex.png" style="width:' + dynamicExSize + 'px;height:auto;position:absolute;right:' + dynamicExPos + 'px;bottom:' + dynamicExPosBot + 'px;"/>'
     }
     if (item['raid_pokemon_id'] != null && item.raid_end > Date.now()) {
+		//Drawing the Gym Raid and Boss Icon
         return '<div style="position:relative;">' +
-            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:55px;height:auto;"/>' +
-            '<i class="pokemon-raid-sprite n' + item.raid_pokemon_id + '"></i>' +
+            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:' + dynamicRaidSize + 'px;height:auto;"/>' +
+            '<img src="static/icons-pokemon/' + item.raid_pokemon_id + '.png" style="width:' + dynamicRaidBossSize + 'px;height:auto;position:absolute;top:1px;right:'+ dynamicRaidBossPosRight + 'px;"/>' +
+			
+			//'<i class="pokemon-raid-sprite n' + item.raid_pokemon_id + '" style="width:' + raidBossSize + 'px;height:auto;></i>' +
             exIcon +
             '</div>'
     } else if (item['raid_level'] !== null && item.raid_end > Date.now()) {
@@ -992,27 +1021,22 @@ function getGymMarkerIcon(item) {
         } else {
             raidEgg = 'legendary'
         }
+		//Drawing the Gym Raid and Egg Icon
         return '<div style="position:relative;">' +
-            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:55px;height:auto;"/>' +
-            '<img src="static/raids/egg_' + raidEgg + '.png" style="width:30px;height:auto;position:absolute;top:8px;right:12px;"/>' +
+            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:' + dynamicRaidSize + 'px;height:auto;"/>' +
+            '<img src="static/raids/egg_' + raidEgg + '.png" style="width:' + dynamicEggSize + 'px;height:auto;position:absolute;top:' + dynamicEggPosTop + 'px;right:' + dynamicEggPosRight + 'px;"/>' +
             exIcon +
             '</div>'
     } else {
-		var gymSizePx; // Depends on Zoomlevel
-		//if(map.getZoom() < 17 && map.getZoom() > 10){
-			//gymSizePx = 48 - (( 17 - (map.getZoom()) )*4)
-			//}
-			//else{
-			//gymSizePx = 48
-			//}
+		//Drawing normal Gyms
 		if (team === 0) {
 			return '<div>' +
-			'<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + gymTypes[item['team_id']] + '.png" style="width:48px;height: auto;"/>' +
+			'<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + gymTypes[item['team_id']] + '.png" style="width:' + dynamicGymSize + 'px;height: auto;"/>' +
 			exIcon +
 			'</div>'
 		} else {
 			return '<div>' +
-				'<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + gymTypes[item['team_id']] + '_' + (6 - item['slots_available']) + '.png" style="width:48px;height: auto;"/>' +
+				'<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + gymTypes[item['team_id']] + '_' + (6 - item['slots_available']) + '.png" style="width:' + dynamicGymSize + 'px;height: auto;"/>' +
 				exIcon +
 				'</div>'
 		}
@@ -1737,6 +1761,13 @@ function processGyms(i, item) {
 
     if (Store.get('showOpenGymsOnly')) {
         if (item.slots_available === 0 && (item.raid_end === undefined || item.raid_end < Date.now())) {
+            removeGymFromMap(item['gym_id'])
+            return true
+        }
+    }
+	
+    if (Store.get('showExGymsOnly')) {
+			if ((((item.park == 'None' || item.park == undefined) || (item['sponsor'] == undefined && item['sponsor'] <= 0) || !triggerGyms.includes(item['gym_id'])) && (noExGyms === false))) {
             removeGymFromMap(item['gym_id'])
             return true
         }
@@ -2684,6 +2715,14 @@ $(function () {
 
     $switchOpenGymsOnly.on('change', function () {
         Store.set('showOpenGymsOnly', this.checked)
+        lastgyms = false
+        updateMap()
+    })
+
+    $switchExGymsOnly = $('#ex-gyms-only-switch')
+
+    $switchExGymsOnly.on('change', function () {
+        Store.set('showExGymsOnly', this.checked)
         lastgyms = false
         updateMap()
     })

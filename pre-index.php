@@ -357,6 +357,19 @@ if ($blockIframe) {
                                 </label>
                             </div>
                         </div>
+                        <div class="form-control switch-container" id="ex-gyms-only-wrapper">
+                            <h3>
+							<?php echo i8ln('Nur Ex Raid Arenen') ?>
+							</h3>
+                            <div class="onoffswitch">
+                                <input id="ex-gyms-only-switch" type="checkbox" name="ex-gyms-only-switch"
+                                       class="onoffswitch-checkbox" checked>
+                                <label class="onoffswitch-label" for="ex-gyms-only-switch">
+                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
+                            </div>
+                        </div>
                         <div class="form-control switch-container" id="min-level-gyms-filter-wrapper">
                             <h3><?php echo i8ln('Min. freie Plätze') ?></h3>
                             <select name="min-level-gyms-filter-switch" id="min-level-gyms-filter-switch">
@@ -888,7 +901,7 @@ if ($blockIframe) {
 <script src="static/dist/js/map.min.js"></script>
 <script src="static/dist/js/stats.min.js"></script>
 <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=<?= $gmapsKey ?>&amp;callback=initMap&amp;libraries=places,geometry"></script>
+        src="https://maps.googleapis.com/maps/api/js?v=3.31&amp;key=<?= $gmapsKey ?>&amp;callback=initMap&amp;libraries=places,geometry"></script>
 <script defer src="static/js/vendor/richmarker-compiled.js"></script>
 </body>
 </html>
