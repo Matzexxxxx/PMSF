@@ -1,5 +1,9 @@
 RewriteEngine on
 
+<IfModule mod_deflate.c> 
+SetOutputFilter DEFLATE 
+SetEnvIfNoCase Request_URI \.(?:gif|jpg|png|ico|zip|gz|mp4|flv)$ no-gzip
+</IfModule>
 RewriteRule ^raw_data$ raw_data.php?$1 [QSA,L]
 RewriteRule ^gym_data$ gym_data.php?$1 [QSA,L]
 RewriteRule ^motd_data$ motd_data.php?$1 [QSA,L]
