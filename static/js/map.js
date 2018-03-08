@@ -1777,7 +1777,7 @@ function processGyms(i, item) {
     }
 	
     if (Store.get('showExGymsOnly')) {
-			if ((((item.park == 'None' || item.park == undefined) || (item['sponsor'] == undefined && item['sponsor'] <= 0) || !triggerGyms.includes(item['gym_id'])) && (noExGyms === false))) {
+			if (((item.park == 'None' || item.park == undefined) || (item['sponsor'] == undefined && item['sponsor'] <= 0))){ //|| !triggerGyms.includes(item['gym_id'])) && (noExGyms === false))) {
             removeGymFromMap(item['gym_id'])
             return true
         }
