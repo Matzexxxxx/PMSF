@@ -972,19 +972,26 @@ function getGymMarkerIcon(item) {
 		//Max Zoom 21 = Iconsize 88
 		//Min Zoom = 11 = Iconsize 8
 		//Standard size = Zoom 16 = 48
+		var raidLevelSize = 20;
+		var dynamicRaidLevelSize = (raidLevelSize/6) + ((raidLevelSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
 		var gymSize = 48;
 		var dynamicGymSize = (gymSize/6) + ((gymSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
-		var raidSize = 55;
+		var raidSize = 50;
 		var dynamicRaidSize = (raidSize/6) + ((raidSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
-		var raidBossSize = 50;
+		var raidBossSize = 40;
 		var dynamicRaidBossSize = (raidBossSize/6) + ((raidBossSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
-		var raidBossPosRight = 20;
+		
+		var raidLevelPosTop = 0;
+		var dynamicRaidLevelPosTop = (raidLevelPosTop/6) + ((raidLevelPosTop/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var raidLevelPosRight = 0;
+		var dynamicRaidLevelPosRight = (raidLevelPosRight/6) + ((raidLevelPosRight/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
+		var raidBossPosRight = 16;
 		var dynamicRaidBossPosRight = (raidBossPosRight/6) + ((raidBossPosRight/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
-		var eggSize = 30;
+		var eggSize = 28;
 		var dynamicEggSize = (eggSize/6) + ((eggSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
 		var eggPosTop = 8;
 		var dynamicEggPosTop = (eggPosTop/6) + ((eggPosTop/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
-		var eggPosRight = 12;
+		var eggPosRight = 10;
 		var dynamicEggPosRight = (eggPosRight/6) + ((eggPosRight/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
 		var exSize = 38;
 		var dynamicExSize = (exSize/6) + ((exSize/6) * (map.getZoom() - 10)) // Depends on Zoomlevel
@@ -1006,9 +1013,9 @@ function getGymMarkerIcon(item) {
     if (item['raid_pokemon_id'] != null && item.raid_end > Date.now()) {
 		//Drawing the Gym Raid and Boss Icon
         return '<div style="position:relative;">' +
-            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:' + dynamicRaidSize + 'px;height:auto;"/>' +
+            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + gymTypes[item['team_id']] + '_' + (6 - item['slots_available']) + '.png" style="width:' + dynamicRaidSize + 'px;height:auto;"/>' +
             '<img src="static/icons-pokemon/' + item.raid_pokemon_id + '.png" style="width:' + dynamicRaidBossSize + 'px;height:auto;position:absolute;top:1px;right:'+ dynamicRaidBossPosRight + 'px;"/>' +
-			
+            '<img src="static/forts/raids/raid' + item['raid_level'] + '.png" style=width:' + dynamicRaidLevelSize + 'px;height:auto;position:absolute;top:' + dynamicRaidLevelPosTop + 'px;right:' + dynamicRaidLevelPosRight + 'px;"/>' +
 			//'<i class="pokemon-raid-sprite n' + item.raid_pokemon_id + '" style="width:' + raidBossSize + 'px;height:auto;></i>' +
             exIcon +
             '</div>'
@@ -1023,9 +1030,12 @@ function getGymMarkerIcon(item) {
         }
 		//Drawing the Gym Raid and Egg Icon
         return '<div style="position:relative;">' +
-            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:' + dynamicRaidSize + 'px;height:auto;"/>' +
-            '<img src="static/raids/egg_' + raidEgg + '.png" style="width:' + dynamicEggSize + 'px;height:auto;position:absolute;top:' + dynamicEggPosTop + 'px;right:' + dynamicEggPosRight + 'px;"/>' +
-            exIcon +
+            //'<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + teamStr + '.png" style="width:' + dynamicRaidSize + 'px;height:auto;"/>' +
+            '<img src="static/forts/' + Store.get('gymMarkerStyle') + '/' + gymTypes[item['team_id']] + '_' + (6 - item['slots_available']) + '.png" style="width:' + dynamicRaidSize + 'px;height:auto;"/>' +
+			
+			'<img src="static/raids/egg_' + raidEgg + '.png" style="width:' + dynamicEggSize + 'px;height:auto;position:absolute;top:' + dynamicEggPosTop + 'px;right:' + dynamicEggPosRight + 'px;"/>' +
+            '<img src="static/forts/raids/raid' + item['raid_level'] + '.png" style=width:' + dynamicRaidLevelSize + 'px;height:auto;position:absolute;top:' + dynamicRaidLevelPosTop + 'px;right:' + dynamicRaidLevelPosRight + 'px;"/>' +
+			exIcon +
             '</div>'
     } else {
 		//Drawing normal Gyms
