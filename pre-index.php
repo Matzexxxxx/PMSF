@@ -733,6 +733,7 @@ if ($blockIframe) {
                     <option value="shield">'.i8ln('Schilder').'</option>
                     <option value="classic">'.i8ln('Klassisch').'</option>
                     <option value="idol">'.i8ln('Götter').'</option>
+                    <option value="beasts">'.i8ln('Biester').'</option>
                 </select>
             </div>';
             }
