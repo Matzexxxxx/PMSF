@@ -131,7 +131,7 @@ if ($blockIframe) {
 <body id="top">
 <div class="wrapper">
     <!-- Header -->
-    <header id="header">
+    <header id="header" style="background-image: linear-gradient(to top, #686868 0%, #121212 100%);">
         <a href="#nav"><b><span class="label" style="color:white"><?php echo i8ln('Menü') ?></span></b></a>
 
         <h1><a href="#"><?= $title ?></a></h1>
