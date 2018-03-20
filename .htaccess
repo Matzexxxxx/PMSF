@@ -1,5 +1,4 @@
 RewriteEngine on
-RewriteBase /test
 
 <IfModule mod_deflate.c> 
 SetOutputFilter DEFLATE 
