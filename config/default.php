@@ -65,10 +65,14 @@ $paypalUrl = "";                                                    // PayPal do
 
 /* Discord */
 
-$discordUrl = "";                                                    // Discord URL, leave "" for empty
+$discordUrl = "";                                                   // Discord URL, leave "" for empty
+
+/* Worldopole */
+
+$worldopoleUrl = "";                                                // Link to Worldopole, leave "" for empty
 
 /* MOTD */
-
+$noMotd = true;
 $motdTitle = "";
 $motdContent = "";
 
@@ -96,11 +100,16 @@ $minIV = '0';                                                       // "0" for e
 $noMinLevel = false;                                                // true/false
 $minLevel = '0';                                                    // "0" for empty or a number
 
+$noBigKarp = false;                                                 // true/false
+$noTinyRat = false;                                                 // true/false
+
 $noGyms = false;                                                    // true/false
 $enableGyms = 'false';                                              // true/false
 $noGymSidebar = false;                                              // true/false
 $gymSidebar = 'true';                                               // true/false
 $noTrainerName = false;                                             // true/false
+$noExEligible = false;                                              // true/false
+$exEligible = 'false';                                              // true/false
 
 $noRaids = false;                                                   // true/false
 $enableRaids = 'false';                                             // true/false
@@ -148,8 +157,8 @@ $notifyRarity = '[]';                                               // "Common",
 $noNotifyIv = false;                                                // true/false
 $notifyIv = '""';                                                   // "" for empty or a number
 
-$noNotifyLevel = false;                                                // true/false
-$notifyLevel = '""';                                                   // "" for empty or a number
+$noNotifyLevel = false;                                             // true/false
+$notifyLevel = '""';                                                // "" for empty or a number
 
 $noNotifyRaid = false;                                              // true/false
 $notifyRaid = 5;                                                    // O to disable
@@ -160,6 +169,12 @@ $notifySound = 'false';                                             // true/fals
 $noCriesSound = false;                                              // true/false
 $criesSound = 'false';                                              // true/false
 
+$noNotifyBounce = false;                                            // true/false
+$notifyBounce = 'true';                                             // true/false
+
+$noNotifyNotification = false;                                      // true/false
+$notifyNotification = 'true';                                       // true/false
+
 /* Style Settings */
 
 $copyrightSafe = true;
@@ -168,7 +183,7 @@ $noMapStyle = false;                                                // true/fals
 $mapStyle = 'style_pgo_dynamic';                                    // roadmap, satellite, hybrid, nolabels_style, dark_style, style_light2, style_pgo, dark_style_nl, style_pgo_day, style_pgo_night, style_pgo_dynamic, openstreetmap
 
 $noDirectionProvider = false;                                       // true/false
-$directionProvider = 'google';                                      // google, waze, apple
+$directionProvider = 'google';                                      // google, waze, apple, bing, google_pin
 
 $noIconSize = false;                                                // true/false
 $iconSize = 0;                                                      // -8, 0, 10, 20
@@ -195,6 +210,13 @@ $noParkInfo = false;                                                // Do not di
 
 $raidApiKey = '';                                                   // Raid API Key, '' to deny access
 $sendRaidData = false;                                              // Send Raid data, false to only send gym data
+
+//-----------------------------------------------------
+// Areas
+//-----------------------------------------------------
+
+$noAreas = true;
+$areas = [];                                                        // [[latitude,longitude,zoom,"name"],[latitude,longitude,zoom,"name"]]
 
 //-----------------------------------------------------
 // Weather Config

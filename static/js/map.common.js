@@ -894,6 +894,16 @@ var StoreOptions = {
             default: notifyRaid,
             type: StoreTypes.Number
         },
+    'remember_bounce_notify':
+        {
+            default: notifyBounce,
+            type: StoreTypes.Boolean
+        },
+    'remember_notification_notify':
+        {
+            default: notifyNotification,
+            type: StoreTypes.Boolean
+        },
     'showRaids':
         {
             default: enableRaids,
@@ -957,6 +967,16 @@ var StoreOptions = {
     'showPokemon':
         {
             default: enablePokemon,
+            type: StoreTypes.Boolean
+        },
+    'showBigKarp':
+        {
+            default: showBigKarp,
+            type: StoreTypes.Boolean
+        },
+    'showTinyRat':
+        {
+            default: showTinyRat,
             type: StoreTypes.Boolean
         },
     'showPokestops':
@@ -1103,6 +1123,11 @@ var StoreOptions = {
         {
             default: triggerGyms,
             type: StoreTypes.JSON
+        },
+    'exEligible':
+        {
+            default: exEligible,
+            type: StoreTypes.Boolean
         }
 }
 
