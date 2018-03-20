@@ -164,7 +164,7 @@ if ($blockIframe) {
             <?php
             if (!$noPokemon) {
                 ?>
-                <h3 style="font-weight: bold"><i class="fa fa-map-marker fa-fw"></i><?php echo i8ln('Pokemon') ?></h3>
+                <h3 style="font-weight: bold;"><i class="fa fa-map-marker fa-fw"></i><?php echo i8ln('Pokemon') ?></h3>
                 <div>
                     <?php
                     echo '<div class=" form-control switch-container" style="float:none;height:35px;margin-bottom:0px;">
@@ -183,7 +183,7 @@ if ($blockIframe) {
                         if (!$noTinyRat) {
                             ?>
                             <div class="form-control switch-container">
-                                <h3><?php echo i8ln('Winzige Rattfratz') ?></h3>
+                                <h3><?php echo i8ln('Nur kl. Rattfratz') ?></h3>
                                 <div class="onoffswitch">
                                     <input id="tiny-rat-switch" type="checkbox" name="tiny-rat-switch"
                                            class="onoffswitch-checkbox" checked>
@@ -199,7 +199,7 @@ if ($blockIframe) {
                         if (!$noBigKarp) {
                             ?>
                             <div class="form-control switch-container">
-                                <h3><?php echo i8ln('Riesige Karpadore') ?></h3>
+                                <h3><?php echo i8ln('Nur gr. Karpadore') ?></h3>
                                 <div class="onoffswitch">
                                     <input id="big-karp-switch" type="checkbox" name="big-karp-switch"
                                            class="onoffswitch-checkbox" checked>
@@ -236,13 +236,13 @@ if ($blockIframe) {
                                 <?php
                                 if (!$noHidePokemon) {
                                     ?>
-                                    <li><a href="#tabs-1"><?php echo i8ln('Hide Pokemon') ?></a></li>
+                                    <li><a href="#tabs-1"><?php echo i8ln('Ausblenden') ?></a></li>
                                     <?php
                                 } ?>
                                 <?php
                                 if (!$noExcludeMinIV) {
                                     ?>
-                                    <li><a href="#tabs-2"><?php echo i8ln('Excl. Min IV/Lvl') ?></a></li>
+                                    <li><a href="#tabs-2"><?php echo i8ln('Immer Anzeigen') ?></a></li>
                                     <?php
                                 } ?>
                             </ul>
@@ -719,7 +719,7 @@ if ($blockIframe) {
             <?php
             if (!$noNotifyBounce) {
                 echo '<div class="form-control switch-container">
-                <h3>' . i8ln('Bounce') . '</h3>
+                <h3>' . i8ln('Pokemon hüpfen') . '</h3>
                 <div class="onoffswitch">
                     <input id="bounce-switch" type="checkbox" name="bounce-switch" class="onoffswitch-checkbox"
                            checked>
@@ -734,7 +734,7 @@ if ($blockIframe) {
             <?php
             if (!$noNotifyNotification) {
                 echo '<div class="form-control switch-container">
-                <h3>' . i8ln('Push Notifications') . '</h3>
+                <h3>' . i8ln('Push-Mitteilung') . '</h3>
                 <div class="onoffswitch">
                     <input id="notification-switch" type="checkbox" name="notification-switch" class="onoffswitch-checkbox"
                            checked>
@@ -871,7 +871,8 @@ if ($blockIframe) {
 			</div>
             <?php
             if (!$noAreas) {
-                echo '<h3>' . i8ln('Fläche') . '</h3>';
+			echo '<h3 style="font-weight: bold"><i class="fa fa-globe fa-fw"></i>'.i8ln('Wichtige Orte').'</h3>
+            ';
                 $count = sizeof($areas);
                 if ($count > 0) {
                     echo '<div class="form-control switch-container area-container"><ul>';
