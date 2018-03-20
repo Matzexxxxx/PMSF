@@ -15,7 +15,6 @@ var $selectStyle
 var $selectIconSize
 var $selectIconNotifySizeModifier
 var $switchOpenGymsOnly
-var $switchExGymsOnly
 var $selectTeamGymsOnly
 var $selectLastUpdateGymsOnly
 var $switchActiveRaids
@@ -380,7 +379,6 @@ function initSidebar() {
     $('#gyms-filter-wrapper').toggle(Store.get('showGyms'))
     $('#team-gyms-only-switch').val(Store.get('showTeamGymsOnly'))
     $('#open-gyms-only-switch').prop('checked', Store.get('showOpenGymsOnly'))
-    $('#ex-gyms-only-switch').prop('checked', Store.get('showExGymsOnly'))
     $('#raids-switch').prop('checked', Store.get('showRaids'))
     $('#raids-filter-wrapper').toggle(Store.get('showRaids'))
     $('#active-raids-switch').prop('checked', Store.get('activeRaids'))
@@ -2858,13 +2856,6 @@ $(function () {
         updateMap()
     })
 
-    $switchExGymsOnly = $('#ex-gyms-only-switch')
-
-    $switchExGymsOnly.on('change', function () {
-        Store.set('showExGymsOnly', this.checked)
-        lastgyms = false
-        updateMap()
-    })
 
     $selectTeamGymsOnly = $('#team-gyms-only-switch')
 
